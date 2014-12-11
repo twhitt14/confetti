@@ -43,7 +43,7 @@
     
     for (NSInteger i = 0; i < 10; i++) {
         UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(150.0, 300.0, 10.0, 2.0)];
-        confettiView.backgroundColor = [UIColor redColor];
+        confettiView.backgroundColor = [self colors][[self randomIntegerFrom:0 to:[[self colors] count]]];
         
         [self.view addSubview:confettiView];
         
@@ -97,12 +97,33 @@
 //    }
 }
 
+- (NSArray *)colors
+{
+    return @[[UIColor redColor],
+             [UIColor blueColor],
+             [UIColor greenColor],
+             [UIColor orangeColor],
+             [UIColor purpleColor],
+             [UIColor magentaColor],
+             [UIColor cyanColor]
+             ];
+}
+
 #pragma mark helpers
 
-- (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber
+- (CGFloat)randomFloatBetween:(CGFloat)smallNumber and:(CGFloat)bigNumber
 {
-    float diff = bigNumber - smallNumber;
-    return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+    CGFloat diff = bigNumber - smallNumber;
+    return (((CGFloat) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
+
+/**
+ *  [fromInteger, toInteger)
+ *  So it's useful for arrays
+ */
+- (NSInteger)randomIntegerFrom:(NSInteger)fromInteger to:(NSInteger)toInteger
+{
+    return fromInteger + arc4random() % (toInteger - fromInteger);
 }
 
 @end
