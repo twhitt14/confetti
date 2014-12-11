@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FA51EB28-7E9F-4517-B570-342AEB9E9932</string>
+	<key>IDESourceControlProjectName</key>
+	<string>L360ConfettiExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0EC72B48632248357C432EFA02271BFAB42AFAE5</key>
+		<string>https://github.com/life360/confetti.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS/L360ConfettiExample/L360ConfettiExample.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0EC72B48632248357C432EFA02271BFAB42AFAE5</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/life360/confetti.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0EC72B48632248357C432EFA02271BFAB42AFAE5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0EC72B48632248357C432EFA02271BFAB42AFAE5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>confetti</string>
+		</dict>
+	</array>
+</dict>
+</plist>
