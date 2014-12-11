@@ -9,12 +9,18 @@
 #import "L360ConfettiObject.h"
 
 @interface L360ConfettiObject ()
+{
+    UIDynamicItemBehavior *_behavior;
+}
 
 @property (nonatomic, strong) UIView *view;
 
 @end
 
 @implementation L360ConfettiObject
+
+@synthesize
+behavior = _behavior;
 
 - (instancetype)initWithView:(UIView *)view
 {
@@ -52,24 +58,22 @@
 
 - (UIDynamicItemBehavior *)behavior
 {
-    UIDynamicItemBehavior *behavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.view]];
-    [behavior addLinearVelocity:_linearVelocity forItem:self.view];
-    [behavior addAngularVelocity:_angularVelocity forItem:self.view];
+    if (!_behavior) {
+        _behavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.view]];
+        [_behavior addLinearVelocity:_linearVelocity forItem:self.view];
+        [_behavior addAngularVelocity:_angularVelocity forItem:self.view];
+        
+        __weak L360ConfettiObject *weakSelf = self;
+        __weak UIDynamicItemBehavior *weakBehavior = _behavior;
+        _behavior.action = ^{
+            CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.view];
+            if (linearVelocity.y > 0) {
+                weakBehavior.resistance = linearVelocity.y / 100.0 / weakSelf.gravityMagnitude / weakSelf.density;
+            }
+        };
+    }
     
-    __weak L360ConfettiObject *weakSelf = self;
-    __weak UIDynamicItemBehavior *weakBehavior = behavior;
-    behavior.action = ^{
-        CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.view];
-        if (linearVelocity.y > 200.0) {
-            weakBehavior.resistance = 2.5;
-        } else if (linearVelocity.y > 100.0) {
-            weakBehavior.resistance = 2.0;
-        } else if (linearVelocity.y > 0) {
-            weakBehavior.resistance = 1.0;
-        }
-    };
-    
-    return behavior;
+    return _behavior;
 }
 
 @end

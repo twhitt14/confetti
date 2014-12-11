@@ -9,7 +9,10 @@
 #import "ViewController.h"
 #import "L360ConfettiObject.h"
 
-@interface ViewController ()
+@interface ViewController () <UICollisionBehaviorDelegate>
+
+@property (nonatomic, strong) NSMutableArray *confettiViews;
+@property (nonatomic, strong) NSMutableArray *confettiObjects;
 
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
@@ -31,28 +34,28 @@
     // Create a collision behavior and set boundry to the full view frame
     UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
     collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+    collisionBehavior.collisionDelegate = self;
     
     [self.animator addBehavior:collisionBehavior];
     
-    NSMutableArray *confettiViews = [NSMutableArray array];
-    NSMutableArray *confettiObjects = [NSMutableArray array];
+    self.confettiViews = [NSMutableArray array];
+    self.confettiObjects = [NSMutableArray array];
     
     for (NSInteger i = 0; i < 10; i++) {
-        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(100.0, 100.0, 10.0, 2.0)];
+        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(150.0, 300.0, 10.0, 2.0)];
         confettiView.backgroundColor = [UIColor redColor];
         
         [self.view addSubview:confettiView];
         
         L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithView:confettiView];
         confettiObject.gravityMagnitude = self.gravityBehavior.magnitude;
+        confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
+                                                    [self randomFloatBetween:-100.0 and:-500.0]);
+        confettiObject.angularVelocity = [self randomFloatBetween:-5.0 and:5.0];
+        confettiObject.density = [self randomFloatBetween:0.2 and:1.5];
         
-        // TODO: Need to vary these per confetti
-        confettiObject.linearVelocity = CGPointMake(100.0, -100.0);
-        confettiObject.angularVelocity = 2.0;
-        confettiObject.density = 1.0;
-        
-        [confettiViews addObject:confettiView];
-        [confettiObjects addObject:confettiObject];
+        [self.confettiViews addObject:confettiView];
+        [self.confettiObjects addObject:confettiObject];
         
         // Add the items to the right behaviors
         [self.gravityBehavior addItem:confettiView];
@@ -71,6 +74,35 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item
+   withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
+{
+#warning This doesn't always work and there might be leaks
+//    // Remove the items that touches the bounds
+//    UIView *confettiView = (UIView *)item;
+//    NSInteger index = [self.confettiViews indexOfObject:confettiView];
+//    if (index != NSNotFound)
+//    {
+//        L360ConfettiObject *confettiObject = [self.confettiObjects objectAtIndex:index];
+//        [self.animator removeBehavior:confettiObject.behavior];
+//        
+//        [confettiView removeFromSuperview];
+//        [self.confettiObjects removeObject:confettiObject];
+//        [self.confettiViews removeObject:confettiView];
+//        
+//        confettiView = nil;
+//        confettiObject = nil;
+//    }
+}
+
+#pragma mark helpers
+
+- (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber
+{
+    float diff = bigNumber - smallNumber;
+    return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
 }
 
 @end

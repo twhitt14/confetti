@@ -187,6 +187,7 @@
 				TargetAttributes = {
 					CDB4F6971A3A42AA004C4310 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 77H9WPR5B8;
 					};
 					CDB4F6B01A3A42AA004C4310 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -367,6 +368,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = L360ConfettiExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -377,6 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = L360ConfettiExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -435,6 +438,7 @@
 				CDB4F6BD1A3A42AA004C4310 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDB4F6BE1A3A42AA004C4310 /* Build configuration list for PBXNativeTarget "L360ConfettiExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +447,7 @@
 				CDB4F6C01A3A42AA004C4310 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
