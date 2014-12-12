@@ -63,12 +63,17 @@ behavior = _behavior;
         [_behavior addLinearVelocity:_linearVelocity forItem:self.view];
         [_behavior addAngularVelocity:_angularVelocity forItem:self.view];
         
+        // Need to simulate paper falling with a terminal velocity
         __weak L360ConfettiObject *weakSelf = self;
         __weak UIDynamicItemBehavior *weakBehavior = _behavior;
         _behavior.action = ^{
             CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.view];
+            // Don't kick in the acceleration limiter till the items start to fall
             if (linearVelocity.y > 0) {
-                weakBehavior.resistance = linearVelocity.y / 100.0 / weakSelf.gravityMagnitude / weakSelf.density;
+                // The calculation for terminal velocity is simple:
+                // divide the linear velocity by gravity magnitude and density of the object
+                // Then divide by a magic number for good measure.
+                weakBehavior.resistance = linearVelocity.y / weakSelf.gravityMagnitude / weakSelf.density / 100.0;
             }
         };
     }

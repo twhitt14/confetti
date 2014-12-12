@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class L360ConfettiView;
+
+@protocol L360ConfettiViewDelegate <NSObject>
+
+@optional
+- (NSArray *)colorsForConfettiView:(L360ConfettiView *)phoneView;
+
+@end
+
 @interface L360ConfettiView : UIView
+
+@property (weak, nonatomic) id <L360ConfettiViewDelegate> delegate;
 
 @end

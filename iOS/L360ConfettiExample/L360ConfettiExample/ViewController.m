@@ -41,8 +41,8 @@
     self.confettiViews = [NSMutableArray array];
     self.confettiObjects = [NSMutableArray array];
     
-    for (NSInteger i = 0; i < 10; i++) {
-        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(150.0, 300.0, 10.0, 2.0)];
+    for (NSInteger i = 0; i < 15; i++) {
+        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(150.0, 300.0, 10.0, 12.0)];
         confettiView.backgroundColor = [self colors][[self randomIntegerFrom:0 to:[[self colors] count]]];
         
         [self.view addSubview:confettiView];
@@ -50,9 +50,9 @@
         L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithView:confettiView];
         confettiObject.gravityMagnitude = self.gravityBehavior.magnitude;
         confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
-                                                    [self randomFloatBetween:-100.0 and:-500.0]);
+                                                    [self randomFloatBetween:-100.0 and:-400.0]);
         confettiObject.angularVelocity = [self randomFloatBetween:-5.0 and:5.0];
-        confettiObject.density = [self randomFloatBetween:0.2 and:1.5];
+        confettiObject.density = [self randomFloatBetween:0.2 and:1.0];
         
         [self.confettiViews addObject:confettiView];
         [self.confettiObjects addObject:confettiObject];
@@ -60,13 +60,16 @@
         // Add the items to the right behaviors
         [self.gravityBehavior addItem:confettiView];
         [collisionBehavior addItem:confettiView];
-        [self.animator addBehavior:confettiObject.behavior];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self.confettiObjects enumerateObjectsUsingBlock:^(L360ConfettiObject *confettiObject, NSUInteger idx, BOOL *stop) {
+        [self.animator addBehavior:confettiObject.behavior];
+    }];
     
     [self.animator addBehavior:self.gravityBehavior];
 }
