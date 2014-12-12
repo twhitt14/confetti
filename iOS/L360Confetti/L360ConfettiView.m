@@ -7,25 +7,28 @@
 //
 
 #import "L360ConfettiView.h"
+#import "L360ConfettiObject.h"
 
 @interface L360ConfettiView () <UICollisionBehaviorDelegate>
 
-@property (nonatomic, strong) NSMutableArray *confettiViews;
-@property (nonatomic, strong) NSMutableArray *confettiObjects;
+@property (nonatomic, strong) NSMutableSet *confettiBursts;
 
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
+@property (nonatomic, strong) UICollisionBehavior *collisionBehavior;
 @property (nonatomic, strong) NSArray *colors;
 
 @end
 
 @implementation L360ConfettiView
 
-- (instancetype)initWithSize:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setupDataFromDelegates];
         
+        self.confettiBursts = [NSMutableSet set];
         
         self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
         
@@ -33,48 +36,86 @@
         self.gravityBehavior = [[UIGravityBehavior alloc] init];
         self.gravityBehavior.magnitude = 0.5;
         
+        [self.animator addBehavior:self.gravityBehavior];
+        
         // Create a collision behavior and set boundry to the full view frame
-        UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-        collisionBehavior.collisionDelegate = self;
+        self.collisionBehavior = [[UICollisionBehavior alloc] init];
+        self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+        self.collisionBehavior.collisionDelegate = self;
         
-        [self.animator addBehavior:collisionBehavior];
-        
-        self.confettiViews = [NSMutableArray array];
-        self.confettiObjects = [NSMutableArray array];
-        
-        for (NSInteger i = 0; i < 15; i++) {
-            UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(150.0, 300.0, 10.0, 2.0)];
-            confettiView.backgroundColor = [self colors][[self randomIntegerFrom:0 to:[[self colors] count]]];
-            
-            [self addSubview:confettiView];
-            
-            L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithView:confettiView];
-            confettiObject.gravityMagnitude = self.gravityBehavior.magnitude;
-            confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
-                                                        [self randomFloatBetween:-100.0 and:-400.0]);
-            confettiObject.angularVelocity = [self randomFloatBetween:-5.0 and:5.0];
-            confettiObject.density = [self randomFloatBetween:0.2 and:1.0];
-            
-            [self.confettiViews addObject:confettiView];
-            [self.confettiObjects addObject:confettiObject];
-            
-            // Add the items to the right behaviors
-            [self.gravityBehavior addItem:confettiView];
-            [collisionBehavior addItem:confettiView];
-        }
+        [self.animator addBehavior:self.collisionBehavior];
     }
     return self;
 }
 
 - (void)setupDataFromDelegates
 {
-    1. Need to complete delegate call back for colors, if delegate doesen't implement, default to red and blue
-    2. Need to continue abstracting out the view.
-    3. Implement explosionAt:(cgpoint)withNumberOfConfetti:(CGFloat)numberConfetti
+    if (self.delegate && [self.delegate respondsToSelector:@selector(colorsForConfettiView:)]) {
+        self.colors = [self.delegate colorsForConfettiView:self];
+    } else {
+        // Default to these colors
+        self.colors = @[[UIColor redColor],
+                        [UIColor blueColor],
+                        [UIColor greenColor],
+                        [UIColor orangeColor],
+                        [UIColor purpleColor],
+                        [UIColor magentaColor],
+                        [UIColor cyanColor]
+                        ];
+    }
+}
+
+- (void)explosionAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti
+{
+    NSMutableArray *confettiObjects = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < numberConfetti; i++) {
+        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(point.x,
+                                                                        point.y,
+                                                                        confettiSize.width,
+                                                                        confettiSize.height)];
+        confettiView.backgroundColor = self.colors[[self randomIntegerFrom:0 to:self.colors.count]];
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(internationalPhoneView:textDidChange:)])
-            [self.delegate internationalPhoneView:self textDidChange:self.textField.text];
+        [self addSubview:confettiView];
+        
+        L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithView:confettiView];
+        confettiObject.gravityMagnitude = self.gravityBehavior.magnitude;
+        confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
+                                                    [self randomFloatBetween:-100.0 and:-400.0]);
+        confettiObject.angularVelocity = [self randomFloatBetween:-5.0 and:5.0];
+        confettiObject.density = [self randomFloatBetween:0.2 and:1.0];
+        
+        [confettiObjects addObject:confettiObject];
+        
+        // Add to the behaviors
+        [self.collisionBehavior addItem:confettiView];
+        [self.animator addBehavior:confettiObject.behavior];
+        [self.gravityBehavior addItem:confettiView];
+    }
+    
+    // Store the burst so that later it can be properly deallocated
+    [self.confettiBursts addObject:confettiObjects];
+}
+
+- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item
+   withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
+{
+#warning This doesn't always work and there might be leaks
+    // Remove the items that touches the bounds
+//    UIView *confettiView = (UIView *)item;
+//    NSInteger index = [self.confettiViews indexOfObject:confettiView];
+//    if (index != NSNotFound)
+//    {
+//        L360ConfettiObject *confettiObject = [self.confettiObjects objectAtIndex:index];
+//        [self.animator removeBehavior:confettiObject.behavior];
+//
+//        [confettiView removeFromSuperview];
+//        [self.confettiObjects removeObject:confettiObject];
+//        [self.confettiViews removeObject:confettiView];
+//
+//        confettiView = nil;
+//        confettiObject = nil;
+//    }
 }
 
 #pragma mark helpers
@@ -91,6 +132,10 @@
  */
 - (NSInteger)randomIntegerFrom:(NSInteger)fromInteger to:(NSInteger)toInteger
 {
+    if (fromInteger == toInteger) {
+        return fromInteger;
+    }
+    
     return fromInteger + arc4random() % (toInteger - fromInteger);
 }
 

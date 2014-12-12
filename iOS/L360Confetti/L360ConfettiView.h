@@ -21,4 +21,6 @@
 
 @property (weak, nonatomic) id <L360ConfettiViewDelegate> delegate;
 
+- (void)explosionAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti;
+
 @end
