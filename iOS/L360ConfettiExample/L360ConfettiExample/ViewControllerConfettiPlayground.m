@@ -23,7 +23,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // Inset the view a bit to make sure that the point conversion is working properly on clicks
+    // Inset the view a bit to make sure that the point conversion is working properly on taps
     self.confettiView = [[L360ConfettiArea alloc] initWithFrame:CGRectMake(100.0,
                                                                            100.0,
                                                                            self.view.frame.size.width - 100.0,

@@ -8,6 +8,7 @@
 
 #import "L360ConfettiArea.h"
 #import "L360ConfettiObject.h"
+#import "L360ConfettiView.h"
 
 @interface L360ConfettiArea () <UICollisionBehaviorDelegate>
 
@@ -70,7 +71,7 @@
     NSMutableArray *confettiObjects = [NSMutableArray array];
     
     for (NSInteger i = 0; i < numberConfetti; i++) {
-        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(point.x,
+        L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:CGRectMake(point.x,
                                                                         point.y,
                                                                         confettiSize.width,
                                                                         confettiSize.height)];
