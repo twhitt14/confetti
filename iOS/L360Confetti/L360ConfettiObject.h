@@ -16,7 +16,7 @@
  *
  *  @param view to add behaviors to.
  */
-- (instancetype)initWithView:(UIView *)view;
+- (instancetype)initWithConfettiView:(UIView *)view;
 
 /**
  *  The initial trajectory of the object before gravity and resistence takes over

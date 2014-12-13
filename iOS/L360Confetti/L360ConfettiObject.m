@@ -22,7 +22,7 @@
 @synthesize
 behavior = _behavior;
 
-- (instancetype)initWithView:(UIView *)view
+- (instancetype)initWithConfettiView:(UIView *)view
 {
     self = [super init];
     if (self) {
@@ -63,10 +63,10 @@ behavior = _behavior;
         [_behavior addLinearVelocity:_linearVelocity forItem:self.view];
         [_behavior addAngularVelocity:_angularVelocity forItem:self.view];
         
-        // Need to simulate paper falling with a terminal velocity
         __weak L360ConfettiObject *weakSelf = self;
         __weak UIDynamicItemBehavior *weakBehavior = _behavior;
         _behavior.action = ^{
+            // Need to simulate paper falling with a terminal velocity
             CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.view];
             // Don't kick in the acceleration limiter till the items start to fall
             if (linearVelocity.y > 0) {

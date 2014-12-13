@@ -21,18 +21,31 @@
 {
     [super loadView];
     
-    self.confettiView = [[L360ConfettiView alloc] initWithFrame:self.view.bounds];
+    self.confettiView = [[L360ConfettiView alloc] initWithFrame:CGRectMake(100.0,
+                                                                           100.0,
+                                                                           self.view.frame.size.width - 100.0,
+                                                                           self.view.frame.size.height - 100.0)];
     
     [self.view addSubview:self.confettiView];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+
+- (void)handleTapFrom:(UITapGestureRecognizer *)recognizer
+{
+    CGPoint tapPoint = [recognizer locationInView:self.view];
+    
+    // Make sure to convert the point so to account for the subview properly
+    [self.confettiView burstAt:[self.view convertPoint:tapPoint toView:self.confettiView]
+                  confettiSize:CGSizeMake(10.0, 15.0)
+              numberOfConfetti:15];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self.confettiView explosionAt:CGPointMake(100.0, 100.0)
-                      confettiSize:CGSizeMake(10.0, 15.0)
-                  numberOfConfetti:15];
 }
 
 - (void)didReceiveMemoryWarning {

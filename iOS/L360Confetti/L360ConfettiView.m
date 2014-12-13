@@ -38,12 +38,12 @@
         
         [self.animator addBehavior:self.gravityBehavior];
         
-        // Create a collision behavior and set boundry to the full view frame
-        self.collisionBehavior = [[UICollisionBehavior alloc] init];
-        self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-        self.collisionBehavior.collisionDelegate = self;
-        
-        [self.animator addBehavior:self.collisionBehavior];
+//        // Create a collision behavior and set boundry to the full view frame
+//        self.collisionBehavior = [[UICollisionBehavior alloc] init];
+//        self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+//        self.collisionBehavior.collisionDelegate = self;
+//        
+//        [self.animator addBehavior:self.collisionBehavior];
     }
     return self;
 }
@@ -65,7 +65,7 @@
     }
 }
 
-- (void)explosionAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti
+- (void)burstAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti
 {
     NSMutableArray *confettiObjects = [NSMutableArray array];
     
@@ -78,7 +78,7 @@
         
         [self addSubview:confettiView];
         
-        L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithView:confettiView];
+        L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithConfettiView:confettiView];
         confettiObject.gravityMagnitude = self.gravityBehavior.magnitude;
         confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
                                                     [self randomFloatBetween:-100.0 and:-400.0]);

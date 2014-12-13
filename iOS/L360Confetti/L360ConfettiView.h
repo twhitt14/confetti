@@ -13,7 +13,7 @@
 @protocol L360ConfettiViewDelegate <NSObject>
 
 @optional
-- (NSArray *)colorsForConfettiView:(L360ConfettiView *)phoneView;
+- (NSArray *)colorsForConfettiView:(L360ConfettiView *)confettiView;
 
 @end
 
@@ -21,6 +21,6 @@
 
 @property (weak, nonatomic) id <L360ConfettiViewDelegate> delegate;
 
-- (void)explosionAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti;
+- (void)burstAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti;
 
 @end
