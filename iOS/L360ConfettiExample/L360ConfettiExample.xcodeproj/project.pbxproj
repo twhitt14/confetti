@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD1C9F7A1A3BFA1F00756770 /* ViewControllerConfettiPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C9F791A3BFA1F00756770 /* ViewControllerConfettiPlayground.m */; };
 		CDB4F69E1A3A42AA004C4310 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F69D1A3A42AA004C4310 /* main.m */; };
 		CDB4F6A11A3A42AA004C4310 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F6A01A3A42AA004C4310 /* AppDelegate.m */; };
 		CDB4F6A41A3A42AA004C4310 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F6A31A3A42AA004C4310 /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD1C9F781A3BFA1F00756770 /* ViewControllerConfettiPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerConfettiPlayground.h; sourceTree = "<group>"; };
+		CD1C9F791A3BFA1F00756770 /* ViewControllerConfettiPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerConfettiPlayground.m; sourceTree = "<group>"; };
 		CDB4F6981A3A42AA004C4310 /* L360ConfettiExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = L360ConfettiExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4F69C1A3A42AA004C4310 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDB4F69D1A3A42AA004C4310 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				CDB4F6A01A3A42AA004C4310 /* AppDelegate.m */,
 				CDB4F6A21A3A42AA004C4310 /* ViewController.h */,
 				CDB4F6A31A3A42AA004C4310 /* ViewController.m */,
+				CD1C9F781A3BFA1F00756770 /* ViewControllerConfettiPlayground.h */,
+				CD1C9F791A3BFA1F00756770 /* ViewControllerConfettiPlayground.m */,
 				CDB4F6A51A3A42AA004C4310 /* Main.storyboard */,
 				CDB4F6A81A3A42AA004C4310 /* Images.xcassets */,
 				CDB4F6AA1A3A42AA004C4310 /* LaunchScreen.xib */,
@@ -244,6 +249,7 @@
 				CDB4F6A11A3A42AA004C4310 /* AppDelegate.m in Sources */,
 				CDB4F69E1A3A42AA004C4310 /* main.m in Sources */,
 				CDB4F6C71A3A4616004C4310 /* L360ConfettiObject.m in Sources */,
+				CD1C9F7A1A3BFA1F00756770 /* ViewControllerConfettiPlayground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
