@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Life360. All rights reserved.
 //
 
-#import "L360ConfettiView.h"
+#import "L360ConfettiArea.h"
 #import "L360ConfettiObject.h"
 
-@interface L360ConfettiView () <UICollisionBehaviorDelegate>
+@interface L360ConfettiArea () <UICollisionBehaviorDelegate>
 
 @property (nonatomic, strong) NSMutableSet *confettiBursts;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation L360ConfettiView
+@implementation L360ConfettiArea
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

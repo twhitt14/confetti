@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class L360ConfettiView;
+@class L360ConfettiArea;
 
 @protocol L360ConfettiViewDelegate <NSObject>
 
 @optional
-- (NSArray *)colorsForConfettiView:(L360ConfettiView *)confettiView;
+- (NSArray *)colorsForConfettiView:(L360ConfettiArea *)confettiView;
 
 @end
 
-@interface L360ConfettiView : UIView
+@interface L360ConfettiArea : UIView
 
 @property (weak, nonatomic) id <L360ConfettiViewDelegate> delegate;
 

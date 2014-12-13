@@ -14,7 +14,7 @@
 		CDB4F6A91A3A42AA004C4310 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB4F6A81A3A42AA004C4310 /* Images.xcassets */; };
 		CDB4F6AC1A3A42AA004C4310 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB4F6AA1A3A42AA004C4310 /* LaunchScreen.xib */; };
 		CDB4F6B81A3A42AA004C4310 /* L360ConfettiExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F6B71A3A42AA004C4310 /* L360ConfettiExampleTests.m */; };
-		CDB4F6C41A3A4505004C4310 /* L360ConfettiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F6C31A3A4505004C4310 /* L360ConfettiView.m */; };
+		CDB4F6C41A3A4505004C4310 /* L360ConfettiArea.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F6C31A3A4505004C4310 /* L360ConfettiArea.m */; };
 		CDB4F6C71A3A4616004C4310 /* L360ConfettiObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F6C61A3A4616004C4310 /* L360ConfettiObject.m */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +42,8 @@
 		CDB4F6B11A3A42AA004C4310 /* L360ConfettiExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = L360ConfettiExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4F6B61A3A42AA004C4310 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDB4F6B71A3A42AA004C4310 /* L360ConfettiExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = L360ConfettiExampleTests.m; sourceTree = "<group>"; };
-		CDB4F6C21A3A4505004C4310 /* L360ConfettiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiView.h; sourceTree = "<group>"; };
-		CDB4F6C31A3A4505004C4310 /* L360ConfettiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360ConfettiView.m; sourceTree = "<group>"; };
+		CDB4F6C21A3A4505004C4310 /* L360ConfettiArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiArea.h; sourceTree = "<group>"; };
+		CDB4F6C31A3A4505004C4310 /* L360ConfettiArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360ConfettiArea.m; sourceTree = "<group>"; };
 		CDB4F6C51A3A4616004C4310 /* L360ConfettiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiObject.h; sourceTree = "<group>"; };
 		CDB4F6C61A3A4616004C4310 /* L360ConfettiObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360ConfettiObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,8 +129,8 @@
 		CDB4F6C11A3A44ED004C4310 /* L360Confetti */ = {
 			isa = PBXGroup;
 			children = (
-				CDB4F6C21A3A4505004C4310 /* L360ConfettiView.h */,
-				CDB4F6C31A3A4505004C4310 /* L360ConfettiView.m */,
+				CDB4F6C21A3A4505004C4310 /* L360ConfettiArea.h */,
+				CDB4F6C31A3A4505004C4310 /* L360ConfettiArea.m */,
 				CDB4F6C51A3A4616004C4310 /* L360ConfettiObject.h */,
 				CDB4F6C61A3A4616004C4310 /* L360ConfettiObject.m */,
 			);
@@ -240,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB4F6A41A3A42AA004C4310 /* ViewController.m in Sources */,
-				CDB4F6C41A3A4505004C4310 /* L360ConfettiView.m in Sources */,
+				CDB4F6C41A3A4505004C4310 /* L360ConfettiArea.m in Sources */,
 				CDB4F6A11A3A42AA004C4310 /* AppDelegate.m in Sources */,
 				CDB4F69E1A3A42AA004C4310 /* main.m in Sources */,
 				CDB4F6C71A3A4616004C4310 /* L360ConfettiObject.m in Sources */,

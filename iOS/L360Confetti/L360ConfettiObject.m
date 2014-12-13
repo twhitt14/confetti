@@ -69,7 +69,7 @@ behavior = _behavior;
             // Need to simulate paper falling with a terminal velocity
             CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.view];
             // Don't kick in the acceleration limiter till the items start to fall
-            if (linearVelocity.y > 0) {
+            if (linearVelocity.y > 50.0) {
                 // The calculation for terminal velocity is simple:
                 // divide the linear velocity by gravity magnitude and density of the object
                 // Then divide by a magic number for good measure.

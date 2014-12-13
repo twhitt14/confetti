@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "L360ConfettiView.h"
+#import "L360ConfettiArea.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) L360ConfettiView *confettiView;
+@property (nonatomic, strong) L360ConfettiArea *confettiView;
 
 @end
 
@@ -21,7 +21,7 @@
 {
     [super loadView];
     
-    self.confettiView = [[L360ConfettiView alloc] initWithFrame:CGRectMake(100.0,
+    self.confettiView = [[L360ConfettiArea alloc] initWithFrame:CGRectMake(100.0,
                                                                            100.0,
                                                                            self.view.frame.size.width - 100.0,
                                                                            self.view.frame.size.height - 100.0)];
