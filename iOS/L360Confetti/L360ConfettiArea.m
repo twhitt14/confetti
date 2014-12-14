@@ -8,6 +8,7 @@
 
 #import "L360ConfettiArea.h"
 #import "L360ConfettiObject.h"
+#import "L360ConfettiView.h"
 
 @interface L360ConfettiArea () <UICollisionBehaviorDelegate>
 
@@ -67,13 +68,16 @@
 
 - (void)burstAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti
 {
+    CGRect confettiFrame = CGRectMake(point.x,
+                                      point.y,
+                                      confettiSize.width,
+                                      confettiSize.height);
+    
     NSMutableArray *confettiObjects = [NSMutableArray array];
     
     for (NSInteger i = 0; i < numberConfetti; i++) {
-        UIView *confettiView = [[UIView alloc] initWithFrame:CGRectMake(point.x,
-                                                                        point.y,
-                                                                        confettiSize.width,
-                                                                        confettiSize.height)];
+        L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
+                                                                withFlutterSpeed:[self randomFloatBetween:1.0 and:5.0] flutterType:[self randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
         confettiView.backgroundColor = self.colors[[self randomIntegerFrom:0 to:self.colors.count]];
         
         [self addSubview:confettiView];
@@ -82,7 +86,6 @@
         confettiObject.gravityMagnitude = self.gravityBehavior.magnitude;
         confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
                                                     [self randomFloatBetween:-100.0 and:-400.0]);
-        confettiObject.angularVelocity = [self randomFloatBetween:-5.0 and:5.0];
         confettiObject.density = [self randomFloatBetween:0.2 and:1.0];
         
         [confettiObjects addObject:confettiObject];

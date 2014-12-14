@@ -23,7 +23,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // Inset the view a bit to make sure that the point conversion is working properly on clicks
+    // Inset the view a bit to make sure that the point conversion is working properly on taps
     self.confettiView = [[L360ConfettiArea alloc] initWithFrame:CGRectMake(100.0,
                                                                            100.0,
                                                                            self.view.frame.size.width - 100.0,
@@ -59,7 +59,7 @@
     
     // Make sure to convert the point so to account for the subview properly
     [self.confettiView burstAt:[self.view convertPoint:tapPoint toView:self.confettiView]
-                  confettiSize:CGSizeMake(10.0, 15.0)
+                  confettiSize:CGSizeMake(10.0, 10.0) // TODO The confetti view has an animation that looks weird if not square
               numberOfConfetti:15];
 }
 
