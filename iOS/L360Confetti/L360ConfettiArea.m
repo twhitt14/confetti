@@ -77,7 +77,7 @@
     
     for (NSInteger i = 0; i < numberConfetti; i++) {
         L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
-                                                                withFlutterSpeed:[self randomFloatBetween:1.0 and:5.0]];
+                                                                withFlutterSpeed:[self randomFloatBetween:1.0 and:5.0] flutterType:[self randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
         confettiView.backgroundColor = self.colors[[self randomIntegerFrom:0 to:self.colors.count]];
         
         [self addSubview:confettiView];

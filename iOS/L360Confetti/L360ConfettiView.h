@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, L360ConfettiFlutterType) {
+    L360ConfettiFlutterTypeDiagonal1,
+    L360ConfettiFlutterTypeDiagonal2,
+    L360ConfettiFlutterTypeHorizontal,
+    L360ConfettiFlutterTypeVertical,
+    L360ConfettiFlutterTypeCount
+};
+
 @interface L360ConfettiView : UIView
 
 /**
@@ -15,7 +23,10 @@
  *
  *  @param frame
  *  @param flutterSpeed Rotations/sec speed of "flutter" of confetti
+ *  @param flutterType They type of flutter for confetti
  */
-- (instancetype)initWithFrame:(CGRect)frame withFlutterSpeed:(CGFloat)flutterSpeed;
+- (instancetype)initWithFrame:(CGRect)frame
+             withFlutterSpeed:(CGFloat)flutterSpeed
+                  flutterType:(L360ConfettiFlutterType)flutterType;
 
 @end
