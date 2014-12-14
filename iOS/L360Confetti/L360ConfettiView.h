@@ -10,4 +10,12 @@
 
 @interface L360ConfettiView : UIView
 
+/**
+ *  Initialization method
+ *
+ *  @param frame
+ *  @param flutterSpeed Rotations/sec speed of "flutter" of confetti
+ */
+- (instancetype)initWithFrame:(CGRect)frame withFlutterSpeed:(CGFloat)flutterSpeed;
+
 @end
