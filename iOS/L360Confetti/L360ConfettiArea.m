@@ -27,8 +27,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupDataFromDelegates];
-        
         self.confettiBursts = [NSMutableSet set];
         
         self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
@@ -68,6 +66,8 @@
 
 - (void)burstAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti
 {
+    [self setupDataFromDelegates];
+    
     CGRect confettiFrame = CGRectMake(point.x,
                                       point.y,
                                       confettiSize.width,
