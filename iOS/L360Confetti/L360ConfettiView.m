@@ -21,25 +21,29 @@
         rotationAnimation.duration = 1.0 / flutterSpeed;
         rotationAnimation.repeatCount = 500;
         
-        // set the animation's "toValue" which MUST be wrapped in an NSValue instance (except special cases such as colors)
+        CATransform3D rotationTransform;
+        
         switch (flutterType) {
             default:
             case L360ConfettiFlutterTypeDiagonal1:
-                rotationAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DConcat(self.layer.transform, CATransform3DRotate(CATransform3DIdentity, M_PI, -1.0, 1.0, 0))];
+                rotationTransform = CATransform3DMakeRotation(M_PI, -1.0, 1.0, 0.0);
                 break;
                 
             case L360ConfettiFlutterTypeDiagonal2:
-                rotationAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DConcat(self.layer.transform, CATransform3DRotate(CATransform3DIdentity, M_PI, 1.0, 1.0, 0))];
+                rotationTransform = CATransform3DMakeRotation(M_PI, 1.0, 1.0, 0.0);
                 break;
                 
             case L360ConfettiFlutterTypeVertical:
-                rotationAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DConcat(self.layer.transform, CATransform3DRotate(CATransform3DIdentity, M_PI, 0.0, 1.0, 0))];
+                rotationTransform = CATransform3DMakeRotation(M_PI, 0.0, 1.0, 0.0);
                 break;
                 
             case L360ConfettiFlutterTypeHorizontal:
-                rotationAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DConcat(self.layer.transform, CATransform3DRotate(CATransform3DIdentity, M_PI, 1.0, 0.0, 0))];
+                rotationTransform = CATransform3DMakeRotation(M_PI, 1.0, 0.0, 0.0);
                 break;
         }
+        
+        // set the animation's "toValue" which MUST be wrapped in an NSValue instance (except special cases such as colors)
+        rotationAnimation.toValue = [NSValue valueWithCATransform3D:rotationTransform];
         
         // finally, apply the animation
         [self.layer addAnimation:rotationAnimation forKey:@"L360ConfettiRotationAnimation"];

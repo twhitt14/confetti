@@ -60,14 +60,15 @@
 {
     [self setupDataFromDelegates];
     
-    CGRect confettiFrame = CGRectMake(point.x,
-                                      point.y,
-                                      confettiWidth,
-                                      confettiWidth);
-    
     NSMutableArray *confettiObjects = [NSMutableArray array];
     
     for (NSInteger i = 0; i < numberConfetti; i++) {
+        CGFloat randomWidth = confettiWidth + [self randomFloatBetween:-(confettiWidth / 2.0) and:2.0];
+        CGRect confettiFrame = CGRectMake(point.x,
+                                          point.y,
+                                          randomWidth,
+                                          randomWidth);
+        
         // Create the confetti view with the random properties
         L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
                                                                 withFlutterSpeed:[self randomFloatBetween:1.0 and:5.0]
