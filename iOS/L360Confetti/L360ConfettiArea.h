@@ -10,17 +10,25 @@
 
 @class L360ConfettiArea;
 
-@protocol L360ConfettiViewDelegate <NSObject>
+@protocol L360ConfettiAreaDelegate <NSObject>
 
 @optional
-- (NSArray *)colorsForConfettiView:(L360ConfettiArea *)confettiView;
+
+/**
+ *  Return an array of UIColor types and the confetti will be these colors
+ */
+- (NSArray *)colorsForConfettiArea:(L360ConfettiArea *)confettiArea;
 
 @end
 
 @interface L360ConfettiArea : UIView
 
-@property (weak, nonatomic) id <L360ConfettiViewDelegate> delegate;
+@property (weak, nonatomic) id <L360ConfettiAreaDelegate> delegate;
 
-- (void)burstAt:(CGPoint)point confettiSize:(CGSize)confettiSize numberOfConfetti:(NSInteger)numberConfetti;
+/**
+ *  Use this to create a burst of confetti from a specific point
+ *  The width determines the square size of the confetti.
+ */
+- (void)burstAt:(CGPoint)point confettiWidth:(CGFloat)confettiWidth numberOfConfetti:(NSInteger)numberConfetti;
 
 @end

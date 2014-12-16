@@ -14,9 +14,15 @@
 /**
  *  Initializer
  *
- *  @param view to add behaviors to.
+ *  @param confettiView     confetti to add behaviors to.
+ *  @param bounds           Keep the confetti within these bounds (used for confetti garbage collection)
+ *  @param animator         A weak reference to animator is kept to help clean object up
+ *  @param gravity          A weak reference to gravity is kept to help clean object up
  */
-- (instancetype)initWithConfettiView:(UIView *)view;
+- (instancetype)initWithConfettiView:(UIView *)confettiView
+                    keepWithinBounds:(CGRect)bounds
+                            animator:(UIDynamicAnimator *)animator
+                             gravity:(UIGravityBehavior *)gravity;
 
 /**
  *  The initial trajectory of the object before gravity and resistence takes over
@@ -30,12 +36,6 @@
  *  DEFAULT: 0.0
  */
 @property (nonatomic, assign) CGFloat angularVelocity;
-
-/**
- *  The magnitude of gravity setup for the gravity behavior
- *  DEFAULT: 1.0
- */
-@property (nonatomic, assign) CGFloat gravityMagnitude;
 
 /**
  *  This determines how softly this object will float down

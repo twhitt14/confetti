@@ -27,7 +27,10 @@
     self.confettiView = [[L360ConfettiArea alloc] initWithFrame:CGRectMake(100.0,
                                                                            100.0,
                                                                            self.view.frame.size.width - 100.0,
-                                                                           self.view.frame.size.height - 100.0)];
+                                                                           self.view.frame.size.height - 100.0 - 100.0)];
+    // make the boundaries of the area clear
+    self.confettiView.layer.borderWidth = 1.0;
+    self.confettiView.layer.borderColor = [UIColor blackColor].CGColor;
     
     [self.view addSubview:self.confettiView];
     
@@ -59,7 +62,7 @@
     
     // Make sure to convert the point so to account for the subview properly
     [self.confettiView burstAt:[self.view convertPoint:tapPoint toView:self.confettiView]
-                  confettiSize:CGSizeMake(10.0, 10.0) // TODO The confetti view has an animation that looks weird if not square
+                  confettiWidth:10.0
               numberOfConfetti:15];
 }
 
@@ -69,15 +72,5 @@
         
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
