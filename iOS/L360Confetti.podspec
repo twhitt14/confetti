@@ -36,8 +36,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "Apache License, Version 2.0"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  # s.license      = "Apache License, Version 2.0"
+  s.license      = { :type => "Apache License, Version 2.0", :file => "iOS/LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -62,10 +62,10 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
+  s.ios.deployment_target = "7.0"
   # s.osx.deployment_target = "10.7"
 
 
@@ -86,7 +86,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "L360Confetti", "L360Confetti/**/*.{h,m}"
+ # s.source_files  = "L360Confetti", "L360Confetti/*.{h,m}"
+  s.source_files  = "iOS/L360Confetti"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -112,7 +113,7 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "SomeFramework"
+  s.framework  = "UIKit"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
