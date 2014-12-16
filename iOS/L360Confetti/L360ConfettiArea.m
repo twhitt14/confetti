@@ -103,7 +103,7 @@
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item
    withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
-#warning This doesn't always work and there might be leaks
+    // TODO: Need some form of Garbage collection
     // Remove the items that touches the bounds
 //    UIView *confettiView = (UIView *)item;
 //    NSInteger index = [self.confettiViews indexOfObject:confettiView];
