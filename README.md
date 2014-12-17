@@ -23,7 +23,7 @@ L360ConfettiArea is a view that you can stretch over the area of your ViewContro
 ```smalltalk
 #import "L360ConfettiArea.h"
 
-// Wherever you're going to initialize it
+// Wherever youre going to initialize it
 L360ConfettiArea *confettiArea = [[L360ConfettiArea alloc] initWithFrame:confettiFrame];
 ```
 
