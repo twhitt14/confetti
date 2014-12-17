@@ -1,6 +1,8 @@
 Life360 Confetti
 ========
-Why Confetti? Because we here at Life360 like to celebrate our users and their accomplishments, and we believe products should celebrate the users and give them a gift when they've accomplished something with the product.
+Why Confetti? Because here at Life360 we like to celebrate our users and their accomplishments. We believe products should celebrate users and give them a gift when they've accomplished something. 
+
+That's why we've created L360Confetti.
 
 ##iOS
 Requirement: iOS 7.0 or above because this class relies heavily on [UIDynamics](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDynamicAnimator_Class)
