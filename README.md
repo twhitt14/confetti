@@ -56,7 +56,7 @@ confettiArea.delegate = self;
 }
 ```
 
-##Issues and Help
+###Issues and Help
 If the community could help us figure out a few of the problems with the L360Confetti that would be great. Following is a list of the issues we're currently facing:
 * [Having to use square ConfettiViews](https://github.com/life360/confetti/issues/2) because of the layer rotations for fluttering
 * [Need to add a swaying pattern to confetti to add more realism (UIWindBehavior Needed!!)](https://github.com/life360/confetti/issues/3)
