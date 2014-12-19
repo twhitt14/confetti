@@ -5,21 +5,30 @@ Why Confetti? Because here at Life360 we like to celebrate our users and their a
 That's why we've created L360Confetti.
 
 ##iOS
+
+<img src="http://giant.gfycat.com/HideousPracticalBasilisk.gif" alt="Confetti!!" width="320px" /> 
+
+**[Get Example Project](https://github.com/life360/confetti/tree/master/iOS/L360ConfettiExample)**
+
+###Installation 
 Requirement: iOS 7.0 or above because this class relies heavily on [UIDynamics](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDynamicAnimator_Class)
-###Install with Cocoapods
+
+####Cocoapods Installation
 Add the following line to your podfile:
 
 `pod 'L360Confetti', :git => 'https://github.com/life360/confetti.git'`
 
 And then run `pod install`
 
-###Install manually
+####..Or Manual Installation
 Copy the contents of [L360Confetti](https://github.com/life360/confetti/tree/master/iOS/L360Confetti) folder located in iOS/L360Confetti
 
-###Use L360ConfettiArea
-L360ConfettiArea is a view that you can stretch over the area of your ViewController that you wish the confetti to display over.
+###Using L360Confetti
+`L360ConfettiArea` is a view that you add to your view controller in which the confetti will display.
 
-**Note:** The L360ConfettiArea is a UIView that retains the default settings of UIViews where `userInteractionEnabled` is `YES` and `layer.masksToBounds` is `NO` by default.
+**Note:** The L360ConfettiArea is a UIView that retains the default settings of UIViews where `userInteractionEnabled` is `YES` (so no click-through) and `layer.masksToBounds` is `NO` (So confetti can pop up anywhere<sup>1</sup>) by default.
+
+**<sup>1</sup>** The confetti disappears at the bottom of the frame for the L360ConfettiArea. The confetti are garbage collected so that you can explode as much confetti into the area as you want.
 
 ####Initialization
 ```smalltalk
