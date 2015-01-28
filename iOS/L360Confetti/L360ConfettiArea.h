@@ -31,4 +31,12 @@
  */
 - (void)burstAt:(CGPoint)point confettiWidth:(CGFloat)confettiWidth numberOfConfetti:(NSInteger)numberConfetti;
 
+/**
+ *  This is the upper limit on how much the confetti sways 
+ *  (the actual number per confetti is a random number between 0.0 and this value
+ *  This is for iPad/iPhone6+ implementations where the swaying of the confetti will seem too small as compared to iPhone
+ *  DEFAULT: 50.0
+ */
+@property (nonatomic, assign) CGFloat swayLength;
+
 @end

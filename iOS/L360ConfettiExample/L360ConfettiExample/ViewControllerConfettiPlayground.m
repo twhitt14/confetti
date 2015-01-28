@@ -24,19 +24,30 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Inset the view a bit to make sure that the point conversion is working properly on taps
-    self.confettiView = [[L360ConfettiArea alloc] initWithFrame:CGRectMake(100.0,
+    self.confettiView = [[L360ConfettiArea alloc] initWithFrame:CGRectMake(0.0,
                                                                            100.0,
-                                                                           self.view.frame.size.width - 100.0,
+                                                                           self.view.frame.size.width,
                                                                            self.view.frame.size.height - 100.0 - 100.0)];
     // make the boundaries of the area clear
     self.confettiView.layer.borderWidth = 1.0;
     self.confettiView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.confettiView.swayLength = 20.0;
     
     [self.view addSubview:self.confettiView];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
     
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    
+    UILabel *life360Label = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
+                                                                      self.confettiView.frame.origin.y + self.confettiView.frame.size.height,
+                                                                      self.view.frame.size.width,
+                                                                      self.view.frame.size.height - (self.confettiView.frame.origin.y + self.confettiView.frame.size.height))];
+    life360Label.text = @"Life360 RoX!!";
+    life360Label.font = [UIFont fontWithName:@"Helvetica" size:22.0];
+    life360Label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.view addSubview:life360Label];
 }
 
 - (void)viewDidLoad {

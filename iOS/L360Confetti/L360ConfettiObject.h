@@ -32,10 +32,10 @@
 @property (nonatomic, assign) CGPoint linearVelocity;
 
 /**
- *  The velocity (radials/sec) of initial spin before resistence takes over
+ *  The lenght back and forth the confetti will sway
  *  DEFAULT: 0.0
  */
-@property (nonatomic, assign) CGFloat angularVelocity;
+@property (nonatomic, assign) CGFloat swayLength;
 
 /**
  *  This determines how softly this object will float down

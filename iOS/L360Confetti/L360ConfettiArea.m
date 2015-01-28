@@ -26,8 +26,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.swayLength = 50.0;
         self.confettiBursts = [NSMutableSet set];
-        
         self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
         
         // Create gravity behavior. Don't add till view did appear
@@ -85,6 +85,7 @@
         confettiObject.linearVelocity = CGPointMake([self randomFloatBetween:-200.0 and:200.0],
                                                     [self randomFloatBetween:-100.0 and:-400.0]);
         confettiObject.density = [self randomFloatBetween:0.2 and:1.0];
+        confettiObject.swayLength = [self randomFloatBetween:0.0 and:self.swayLength];
         
         [confettiObjects addObject:confettiObject];
         

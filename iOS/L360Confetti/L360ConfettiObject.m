@@ -8,9 +8,17 @@
 
 #import "L360ConfettiObject.h"
 
+typedef NS_ENUM(NSInteger, L360ConfettiObjectSwayType) {
+    L360ConfettiObjectSwayTypeNone,
+    L360ConfettiObjectSwayTypeLeft,
+    L360ConfettiObjectSwayTypeRight
+};
+
 @interface L360ConfettiObject ()
 {
     UIDynamicItemBehavior *_fallingBehavior;
+    L360ConfettiObjectSwayType _swayType;
+    CGFloat _swayFocalPointX;
 }
 
 @property (nonatomic, strong) UIView *confettiView;
@@ -34,38 +42,38 @@ fallingBehavior = _fallingBehavior;
     self = [super init];
     if (self) {
         self.linearVelocity = CGPointMake(0.0, 0.0);
-        self.angularVelocity = 0.0;
+        self.swayLength = 0.0;
         self.density = 1.0;
         self.confettiView = confettiView;
         self.confettiAreaBounds = bounds;
         self.animator = animator;
         self.gravityBehavior = gravity;
+        _swayType = L360ConfettiObjectSwayTypeNone;
     }
     
     return self;
 }
 
-- (void)setLinearVelocity:(CGPoint)linearVelocity
-{
-    _linearVelocity = linearVelocity;
-}
-
-- (void)setAngularVelocity:(CGFloat)angularVelocity
-{
-    _angularVelocity = angularVelocity;
-}
-
-- (void)setDensity:(CGFloat)density
-{
-    _density = density;
-}
+//- (void)setLinearVelocity:(CGPoint)linearVelocity
+//{
+//    _linearVelocity = linearVelocity;
+//}
+//
+//- (void)setSwayLength:(CGFloat)swayLength
+//{
+//    _swayLength = swayLength;
+//}
+//
+//- (void)setDensity:(CGFloat)density
+//{
+//    _density = density;
+//}
 
 - (UIDynamicItemBehavior *)fallingBehavior
 {
     if (!_fallingBehavior) {
         _fallingBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.confettiView]];
         [_fallingBehavior addLinearVelocity:_linearVelocity forItem:self.confettiView];
-        [_fallingBehavior addAngularVelocity:_angularVelocity forItem:self.confettiView];
         
         __weak L360ConfettiObject *weakSelf = self;
         __weak UIDynamicItemBehavior *weakBehavior = _fallingBehavior;
@@ -74,6 +82,8 @@ fallingBehavior = _fallingBehavior;
             CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.confettiView];
             // Don't kick in the acceleration limiter till the items start to fall
             if (linearVelocity.y > 50.0) {
+                [weakSelf handleSway];
+                
                 // The calculation for terminal velocity is simple:
                 // divide the linear velocity by gravity magnitude and density of the object
                 // Then divide by a magic number for good measure.
@@ -88,6 +98,38 @@ fallingBehavior = _fallingBehavior;
     }
     
     return _fallingBehavior;
+}
+
+- (void)handleSway
+{
+    switch (_swayType) {
+        case L360ConfettiObjectSwayTypeNone:
+            _swayFocalPointX = self.confettiView.center.x;
+            _swayType = [self flipCoinIsHeads] ? L360ConfettiObjectSwayTypeLeft : L360ConfettiObjectSwayTypeRight;
+            
+            break;
+            
+        case L360ConfettiObjectSwayTypeLeft:
+            [_fallingBehavior addLinearVelocity:CGPointMake(-10.0, 0.0) forItem:self.confettiView];
+            
+            if (self.confettiView.center.x < (_swayFocalPointX - (self.swayLength / 2.0))) {
+                // Switch to the other direction
+                _swayType = L360ConfettiObjectSwayTypeRight;
+            }
+            break;
+            
+        case L360ConfettiObjectSwayTypeRight:
+            [_fallingBehavior addLinearVelocity:CGPointMake(10.0, 0.0) forItem:self.confettiView];
+            
+            if (self.confettiView.center.x > (_swayFocalPointX + (self.swayLength / 2.0))) {
+                // Switch to the other direction
+                _swayType = L360ConfettiObjectSwayTypeLeft;
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)cleanupObject
@@ -106,6 +148,11 @@ fallingBehavior = _fallingBehavior;
     // Nil it all out
     _fallingBehavior = nil;
     self.confettiView = nil;
+}
+
+- (BOOL)flipCoinIsHeads
+{
+    return arc4random_uniform(1);
 }
 
 @end
