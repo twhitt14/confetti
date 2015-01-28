@@ -44,8 +44,8 @@
 @property (nonatomic, assign) CGFloat density;
 
 /**
- *  The way this item will behave based on the values given above
+ *  The way this item will fall based on the values given above
  */
-@property (nonatomic, readonly) UIDynamicItemBehavior *behavior;
+@property (nonatomic, readonly) UIDynamicItemBehavior *fallingBehavior;
 
 @end

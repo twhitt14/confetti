@@ -10,7 +10,7 @@
 
 @interface L360ConfettiObject ()
 {
-    UIDynamicItemBehavior *_behavior;
+    UIDynamicItemBehavior *_fallingBehavior;
 }
 
 @property (nonatomic, strong) UIView *confettiView;
@@ -24,7 +24,7 @@
 @implementation L360ConfettiObject
 
 @synthesize
-behavior = _behavior;
+fallingBehavior = _fallingBehavior;
 
 - (instancetype)initWithConfettiView:(UIView *)confettiView
                     keepWithinBounds:(CGRect)bounds
@@ -60,16 +60,16 @@ behavior = _behavior;
     _density = density;
 }
 
-- (UIDynamicItemBehavior *)behavior
+- (UIDynamicItemBehavior *)fallingBehavior
 {
-    if (!_behavior) {
-        _behavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.confettiView]];
-        [_behavior addLinearVelocity:_linearVelocity forItem:self.confettiView];
-        [_behavior addAngularVelocity:_angularVelocity forItem:self.confettiView];
+    if (!_fallingBehavior) {
+        _fallingBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.confettiView]];
+        [_fallingBehavior addLinearVelocity:_linearVelocity forItem:self.confettiView];
+        [_fallingBehavior addAngularVelocity:_angularVelocity forItem:self.confettiView];
         
         __weak L360ConfettiObject *weakSelf = self;
-        __weak UIDynamicItemBehavior *weakBehavior = _behavior;
-        _behavior.action = ^{
+        __weak UIDynamicItemBehavior *weakBehavior = _fallingBehavior;
+        _fallingBehavior.action = ^{
             // Need to simulate paper falling with a terminal velocity
             CGPoint linearVelocity = [weakBehavior linearVelocityForItem:weakSelf.confettiView];
             // Don't kick in the acceleration limiter till the items start to fall
@@ -87,24 +87,24 @@ behavior = _behavior;
         };
     }
     
-    return _behavior;
+    return _fallingBehavior;
 }
 
 - (void)cleanupObject
 {
     // Remove the behavior items
-    [_behavior removeItem:self.confettiView];
-    _behavior.action = nil;
+    [_fallingBehavior removeItem:self.confettiView];
+    _fallingBehavior.action = nil;
     
     // Remove behavior from parent animator and remove view from gravity
-    [self.animator removeBehavior:_behavior];
+    [self.animator removeBehavior:_fallingBehavior];
     [self.gravityBehavior removeItem:self.confettiView];
     
     // Remove confetti from superview
     [self.confettiView removeFromSuperview];
     
     // Nil it all out
-    _behavior = nil;
+    _fallingBehavior = nil;
     self.confettiView = nil;
 }
 

@@ -89,7 +89,7 @@
         [confettiObjects addObject:confettiObject];
         
         // Add the confetti object behavior to the animator and the view to gravity behavior
-        [self.animator addBehavior:confettiObject.behavior];
+        [self.animator addBehavior:confettiObject.fallingBehavior];
         [self.gravityBehavior addItem:confettiView];
     }
     
