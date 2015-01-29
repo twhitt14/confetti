@@ -1,7 +1,5 @@
 <img src="/iOS/ConfettiGif.gif" alt="Confetti!!" width="320px" />
 
-**[Get Example Project](https://github.com/life360/confetti/tree/master/iOS/L360ConfettiExample)**
-
 ###Installation 
 Requirement: iOS 7.0 or above because this class relies heavily on [UIDynamics](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDynamicAnimator_Class)
 
@@ -55,10 +53,9 @@ confettiArea.delegate = self;
 {
     return @[[UIColor blueColor], [UIColor redColor], [UIColor purpleColor]];
     }
-    ```
+```
 
-    ###Issues and Help
-    If the community could help us figure out a few of the problems with the L360Confetti that would be great. Following is a list of the issues we're currently facing:
-    * [Having to use square ConfettiViews](https://github.com/life360/confetti/issues/2) because of the layer rotations for fluttering
-    * [Need to add a swaying pattern to confetti to add more realism (UIWindBehavior Needed!!)](https://github.com/life360/confetti/issues/3)
-    * [Have different kinds of confetti](https://github.com/life360/confetti/issues/4), ones that swirl or loop down.
+###Issues and Help
+If the community could help us figure out a few of the problems with the L360Confetti that would be great. Following is a list of the issues we're currently facing:
+* [Having to use square ConfettiViews](https://github.com/life360/confetti/issues/2) because of the layer rotations for fluttering
+* [Have different kinds of confetti](https://github.com/life360/confetti/issues/4), ones that swirl or loop down.
