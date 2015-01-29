@@ -6,7 +6,7 @@ That's why we've created L360Confetti.
 
 ##iOS
 
-<img src="/iOS/ConfettiGif.gif" alt="Confetti!!" width="320px" />
+<img src="/iOS/ConfettiGif.gif" alt="Confetti!! Gif thanks to gfycat.com" width="320px" />
 
 **[Get Example Project](https://github.com/life360/confetti/tree/master/iOS/L360ConfettiExample)**
 
