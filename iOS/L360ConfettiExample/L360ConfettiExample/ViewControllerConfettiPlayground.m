@@ -72,9 +72,19 @@
     CGPoint tapPoint = [recognizer locationInView:self.view];
     
     // Make sure to convert the point so to account for the subview properly
-    [self.confettiView burstAt:[self.view convertPoint:tapPoint toView:self.confettiView]
-                  confettiWidth:10.0
-              numberOfConfetti:15];
+    
+    // Test Bursts
+//    [self.confettiView burstAt:[self.view convertPoint:tapPoint toView:self.confettiView]
+//                  confettiWidth:10.0
+//              numberOfConfetti:15];
+    
+    // Test blasts
+    self.confettiView.blastSpread = 0.3;
+    [self.confettiView blastFrom:[self.view convertPoint:tapPoint toView:self.confettiView]
+                         towards:M_PI / 2.0
+                       withForce:500.0
+                   confettiWidth:10.0
+                numberOfConfetti:15.0];
 }
 
 - (void)closeWindow

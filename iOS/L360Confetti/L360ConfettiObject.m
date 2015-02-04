@@ -54,21 +54,6 @@ fallingBehavior = _fallingBehavior;
     return self;
 }
 
-//- (void)setLinearVelocity:(CGPoint)linearVelocity
-//{
-//    _linearVelocity = linearVelocity;
-//}
-//
-//- (void)setSwayLength:(CGFloat)swayLength
-//{
-//    _swayLength = swayLength;
-//}
-//
-//- (void)setDensity:(CGFloat)density
-//{
-//    _density = density;
-//}
-
 - (UIDynamicItemBehavior *)fallingBehavior
 {
     if (!_fallingBehavior) {
