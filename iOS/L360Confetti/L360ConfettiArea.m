@@ -10,9 +10,10 @@
 #import "L360ConfettiObject.h"
 #import "L360ConfettiView.h"
 
-@interface L360ConfettiArea ()
+@interface L360ConfettiArea () <L360ConfettiObjectDelegate>
 
-@property (nonatomic, strong) NSMutableSet *confettiBursts;
+// Need to hold reference to the L360ConfettiObjects while they animate
+@property (nonatomic, strong) NSMutableSet *confettiObjectsCache;
 
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
@@ -44,7 +45,7 @@
 {
     self.swayLength = 50.0;
     self.blastSpread = 0.1;
-    self.confettiBursts = [NSMutableSet set];
+    self.confettiObjectsCache = [NSMutableSet set];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
     
     // Create gravity behavior. Don't add till view did appear
@@ -101,8 +102,10 @@
                                                         [weakSelf randomFloatBetween:-100.0 and:-400.0]);
             confettiObject.density = [weakSelf randomFloatBetween:0.2 and:1.0];
             confettiObject.swayLength = [weakSelf randomFloatBetween:0.0 and:weakSelf.swayLength];
+            confettiObject.delegate = weakSelf;
             
             [confettiObjects addObject:confettiObject];
+            [weakSelf.confettiObjectsCache addObject:confettiObject];
             
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 [weakSelf addSubview:confettiView];
@@ -112,9 +115,6 @@
                 [weakSelf.gravityBehavior addItem:confettiView];
             });
         }
-        
-        // Store the burst so that later it can be properly deallocated
-        [weakSelf.confettiBursts addObject:confettiObjects];
     });
 }
 
@@ -155,8 +155,10 @@
                                                         [weakSelf randomFloatBetween:vectorForceYmin and:vectorForceYmax]);
             confettiObject.density = [weakSelf randomFloatBetween:0.2 and:1.0];
             confettiObject.swayLength = [weakSelf randomFloatBetween:0.0 and:weakSelf.swayLength];
+            confettiObject.delegate = weakSelf;
             
             [confettiObjects addObject:confettiObject];
+            [weakSelf.confettiObjectsCache addObject:confettiObject];
             
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 [weakSelf addSubview:confettiView];
@@ -165,10 +167,15 @@
                 [weakSelf.gravityBehavior addItem:confettiView];
             });
         }
-        
-        // Store the burst so that later it can be properly deallocated
-        [weakSelf.confettiBursts addObject:confettiObjects];
     });
+}
+
+#pragma mark L360ConfettiObjectDelegate
+
+- (void)needToDeallocateConfettiObject:(L360ConfettiObject *)confettiObject
+{
+    [self.confettiObjectsCache removeObject:confettiObject];
+    confettiObject = nil;
 }
 
 #pragma mark helpers

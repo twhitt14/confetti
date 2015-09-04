@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class L360ConfettiObject;
+
+@protocol L360ConfettiObjectDelegate <NSObject>
+
+- (void)needToDeallocateConfettiObject:(L360ConfettiObject *)confettiObject;
+
+@end
+
 @interface L360ConfettiObject : NSObject
 
 /**
@@ -47,5 +55,10 @@
  *  The way this item will fall based on the values given above
  */
 @property (nonatomic, readonly) UIDynamicItemBehavior *fallingBehavior;
+
+/**
+ *  Assign a delegate to handle removal of this object
+ */
+@property (nonatomic, weak) id<L360ConfettiObjectDelegate> delegate;
 
 @end

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "L360Confetti"
-  s.version      = "1.1.2"
+  s.version      = "1.1.3"
   s.summary      = "Delight your users with some confetti in your app!!"
 
   s.description  = <<-DESC
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.source       = { :git => "https://github.com/life360/confetti.git", :tag => "1.1.2" }
+  s.source       = { :git => "https://github.com/life360/confetti.git", :tag => "1.1.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

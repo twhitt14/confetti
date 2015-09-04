@@ -133,6 +133,10 @@ fallingBehavior = _fallingBehavior;
     // Nil it all out
     _fallingBehavior = nil;
     self.confettiView = nil;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(needToDeallocateConfettiObject:)]) {
+        [self.delegate needToDeallocateConfettiObject:self];
+    }
 }
 
 - (BOOL)flipCoinIsHeads
