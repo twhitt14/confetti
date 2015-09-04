@@ -84,7 +84,7 @@
                          towards:M_PI / 2.0
                        withForce:500.0
                    confettiWidth:10.0
-                numberOfConfetti:100];
+                numberOfConfetti:60];
 }
 
 - (void)closeWindow
