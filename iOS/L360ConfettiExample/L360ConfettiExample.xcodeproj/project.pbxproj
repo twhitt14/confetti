@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF028A291E8EDDB70082D8D0 /* L360ConfettiAbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF028A281E8EDDB70082D8D0 /* L360ConfettiAbleView.m */; };
+		BFBA60051E8DA7B600009A31 /* L360ConfettiSnow.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBA60041E8DA7B600009A31 /* L360ConfettiSnow.m */; };
+		BFBA60081E8DC80A00009A31 /* L360CandyCorn.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBA60071E8DC80A00009A31 /* L360CandyCorn.m */; };
+		BFBA600B1E8DD41A00009A31 /* L360BatConfetti.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBA600A1E8DD41A00009A31 /* L360BatConfetti.m */; };
 		CD1C9F7A1A3BFA1F00756770 /* ViewControllerConfettiPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C9F791A3BFA1F00756770 /* ViewControllerConfettiPlayground.m */; };
 		CD1C9F7D1A3C062500756770 /* L360ConfettiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C9F7C1A3C062500756770 /* L360ConfettiView.m */; };
 		CDB4F69E1A3A42AA004C4310 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4F69D1A3A42AA004C4310 /* main.m */; };
@@ -31,6 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF028A271E8EDDB70082D8D0 /* L360ConfettiAbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiAbleView.h; sourceTree = "<group>"; };
+		BF028A281E8EDDB70082D8D0 /* L360ConfettiAbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360ConfettiAbleView.m; sourceTree = "<group>"; };
+		BFBA60031E8DA7B600009A31 /* L360ConfettiSnow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiSnow.h; sourceTree = "<group>"; };
+		BFBA60041E8DA7B600009A31 /* L360ConfettiSnow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360ConfettiSnow.m; sourceTree = "<group>"; };
+		BFBA60061E8DC80A00009A31 /* L360CandyCorn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360CandyCorn.h; sourceTree = "<group>"; };
+		BFBA60071E8DC80A00009A31 /* L360CandyCorn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360CandyCorn.m; sourceTree = "<group>"; };
+		BFBA60091E8DD41A00009A31 /* L360BatConfetti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360BatConfetti.h; sourceTree = "<group>"; };
+		BFBA600A1E8DD41A00009A31 /* L360BatConfetti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = L360BatConfetti.m; sourceTree = "<group>"; };
 		CD1C9F781A3BFA1F00756770 /* ViewControllerConfettiPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerConfettiPlayground.h; sourceTree = "<group>"; };
 		CD1C9F791A3BFA1F00756770 /* ViewControllerConfettiPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerConfettiPlayground.m; sourceTree = "<group>"; };
 		CD1C9F7B1A3C062500756770 /* L360ConfettiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiView.h; sourceTree = "<group>"; };
@@ -143,6 +155,14 @@
 				CD1C9F7C1A3C062500756770 /* L360ConfettiView.m */,
 				CDB4F6C51A3A4616004C4310 /* L360ConfettiObject.h */,
 				CDB4F6C61A3A4616004C4310 /* L360ConfettiObject.m */,
+				BFBA60031E8DA7B600009A31 /* L360ConfettiSnow.h */,
+				BFBA60041E8DA7B600009A31 /* L360ConfettiSnow.m */,
+				BFBA60061E8DC80A00009A31 /* L360CandyCorn.h */,
+				BFBA60071E8DC80A00009A31 /* L360CandyCorn.m */,
+				BFBA60091E8DD41A00009A31 /* L360BatConfetti.h */,
+				BFBA600A1E8DD41A00009A31 /* L360BatConfetti.m */,
+				BF028A271E8EDDB70082D8D0 /* L360ConfettiAbleView.h */,
+				BF028A281E8EDDB70082D8D0 /* L360ConfettiAbleView.m */,
 			);
 			name = L360Confetti;
 			path = ../../L360Confetti;
@@ -251,9 +271,13 @@
 			files = (
 				CDB4F6A41A3A42AA004C4310 /* ViewController.m in Sources */,
 				CDB4F6C41A3A4505004C4310 /* L360ConfettiArea.m in Sources */,
+				BF028A291E8EDDB70082D8D0 /* L360ConfettiAbleView.m in Sources */,
 				CDB4F6A11A3A42AA004C4310 /* AppDelegate.m in Sources */,
 				CDB4F69E1A3A42AA004C4310 /* main.m in Sources */,
+				BFBA60081E8DC80A00009A31 /* L360CandyCorn.m in Sources */,
 				CDB4F6C71A3A4616004C4310 /* L360ConfettiObject.m in Sources */,
+				BFBA600B1E8DD41A00009A31 /* L360BatConfetti.m in Sources */,
+				BFBA60051E8DA7B600009A31 /* L360ConfettiSnow.m in Sources */,
 				CD1C9F7A1A3BFA1F00756770 /* ViewControllerConfettiPlayground.m in Sources */,
 				CD1C9F7D1A3C062500756770 /* L360ConfettiView.m in Sources */,
 			);

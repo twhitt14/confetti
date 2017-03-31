@@ -8,10 +8,14 @@
 
 #import "ViewControllerConfettiPlayground.h"
 #import "L360ConfettiArea.h"
+#import "L360BatConfetti.h"
+#import "L360CandyCorn.h"
+#import "L360ConfettiSnow.h"
 
 @interface ViewControllerConfettiPlayground ()
 
 @property (nonatomic, strong) L360ConfettiArea *confettiView;
+@property (nonatomic, assign) NSInteger numberTaps;
 
 @end
 
@@ -53,7 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeWindow)];
 }
 
@@ -74,17 +78,34 @@
     // Make sure to convert the point so to account for the subview properly
     
     // Test Bursts
-//    [self.confettiView burstAt:[self.view convertPoint:tapPoint toView:self.confettiView]
-//                  confettiWidth:10.0
-//              numberOfConfetti:60];
+
+    if (!_numberTaps) {
+        _numberTaps = 0;
+    }
+
+    NSInteger mod = 3;
+    
+    Class<L360ConfettiAble> confettiType;
+
+    if ((self.numberTaps % mod) == 0) {
+        confettiType = [L360BatConfetti class];
+    } else if ((self.numberTaps % mod) == 1) {
+        confettiType = [L360ConfettiSnow class];
+    } else if ((self.numberTaps % mod) == 2) {
+        confettiType = [L360CandyCorn class];
+    } else {
+        confettiType = [L360CandyCorn class];
+    }
+
+    self.numberTaps += 1;
     
     // Test blasts
     self.confettiView.blastSpread = 0.3;
-    [self.confettiView blastFrom:[self.view convertPoint:tapPoint toView:self.confettiView]
-                         towards:M_PI / 2.0
-                       withForce:500.0
-                   confettiWidth:10.0
-                numberOfConfetti:60];
+    [self.confettiView blastConfettiType:confettiType
+                               fromPoint:[self.view convertPoint:tapPoint toView:self.confettiView]
+                                 towards:M_PI_2
+                               withForce:400
+                        numberOfConfetti:25];
 }
 
 - (void)closeWindow

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class L360ConfettiArea;
+@protocol L360ConfettiAble;
 
 @protocol L360ConfettiAreaDelegate <NSObject>
 
@@ -39,6 +40,9 @@
  *  @force      The force in which the confetti will blast out at. Ranges of 100-1000 is normal.
  */
 - (void)blastFrom:(CGPoint)point towards:(CGFloat)angle withForce:(CGFloat)force confettiWidth:(CGFloat)confettiWidth numberOfConfetti:(NSInteger)numberConfetti;
+
+// HACKATHON
+- (void)blastConfettiType:(Class<L360ConfettiAble>)Confetti fromPoint:(CGPoint)point towards:(CGFloat)angle withForce:(CGFloat)force numberOfConfetti:(NSInteger)numberConfetti;
 
 /**
  *  This is the upper limit on how much the confetti sways 
