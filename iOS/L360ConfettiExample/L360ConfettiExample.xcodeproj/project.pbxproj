@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF028A271E8EDDB70082D8D0 /* L360ConfettiAble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiAble.h; sourceTree = "<group>"; };
 		CD1C9F781A3BFA1F00756770 /* ViewControllerConfettiPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerConfettiPlayground.h; sourceTree = "<group>"; };
 		CD1C9F791A3BFA1F00756770 /* ViewControllerConfettiPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerConfettiPlayground.m; sourceTree = "<group>"; };
 		CD1C9F7B1A3C062500756770 /* L360ConfettiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L360ConfettiView.h; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				CD1C9F7C1A3C062500756770 /* L360ConfettiView.m */,
 				CDB4F6C51A3A4616004C4310 /* L360ConfettiObject.h */,
 				CDB4F6C61A3A4616004C4310 /* L360ConfettiObject.m */,
+				BF028A271E8EDDB70082D8D0 /* L360ConfettiAble.h */,
 			);
 			name = L360Confetti;
 			path = ../../L360Confetti;
