@@ -92,7 +92,7 @@
             L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
                                                                     withFlutterSpeed:[weakSelf randomFloatBetween:1.0 and:5.0]
                                                                          flutterType:[weakSelf randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
-            confettiView.backgroundColor = weakSelf.colors[[weakSelf randomIntegerFrom:0 to:weakSelf.colors.count]];
+            UIColor * color = weakSelf.colors[[weakSelf randomIntegerFrom:0 to:weakSelf.colors.count]];
             
             // Each view is associated with an object that handles how the confetti falls
             L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithConfettiView:confettiView
@@ -109,6 +109,7 @@
             [weakSelf.confettiObjectsCache addObject:confettiObject];
             
             dispatch_async(dispatch_get_main_queue(), ^(void) {
+                confettiView.backgroundColor = color;
                 [weakSelf addSubview:confettiView];
                 
                 // Add the confetti object behavior to the animator and the view to gravity behavior
