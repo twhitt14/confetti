@@ -106,9 +106,10 @@
             confettiObject.delegate = weakSelf;
             
             [confettiObjects addObject:confettiObject];
-            [weakSelf.confettiObjectsCache addObject:confettiObject];
             
             dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [weakSelf.confettiObjectsCache addObject:confettiObject];
+                
                 confettiView.backgroundColor = color;
                 [weakSelf addSubview:confettiView];
                 
