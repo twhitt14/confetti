@@ -76,27 +76,20 @@
 - (void)burstAt:(CGPoint)point confettiWidth:(CGFloat)confettiWidth numberOfConfetti:(NSInteger)numberConfetti
 {
     [self setupDataFromDelegates];
-    
-    NSMutableArray *confettiObjects = [NSMutableArray array];
-    
+
+    NSArray<L360ConfettiView *> *confettiViews = [self confettiViewsAtPoint:point confettiWidth:confettiWidth numberOfConfetti:numberConfetti];
+
+    CGRect currentBounds = self.bounds;
+
     __weak L360ConfettiArea *weakSelf = self;
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (NSInteger i = 0; i < numberConfetti; i++) {
-            CGFloat randomWidth = confettiWidth + [weakSelf randomFloatBetween:-(confettiWidth / 2.0) and:2.0];
-            CGRect confettiFrame = CGRectMake(point.x,
-                                              point.y,
-                                              randomWidth,
-                                              randomWidth);
-            
-            // Create the confetti view with the random properties
-            L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
-                                                                    withFlutterSpeed:[weakSelf randomFloatBetween:1.0 and:5.0]
-                                                                         flutterType:[weakSelf randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
-            UIColor * color = weakSelf.colors[[weakSelf randomIntegerFrom:0 to:weakSelf.colors.count]];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        NSMutableArray *confettiObjects = [NSMutableArray array];
+
+        for (L360ConfettiView *confettiView in confettiViews) {
             
             // Each view is associated with an object that handles how the confetti falls
             L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithConfettiView:confettiView
-                                                                                 keepWithinBounds:weakSelf.bounds
+                                                                                 keepWithinBounds:currentBounds
                                                                                          animator:weakSelf.animator
                                                                                           gravity:weakSelf.gravityBehavior];
             confettiObject.linearVelocity = CGPointMake([weakSelf randomFloatBetween:-200.0 and:200.0],
@@ -109,8 +102,6 @@
             
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 [weakSelf.confettiObjectsCache addObject:confettiObject];
-                
-                confettiView.backgroundColor = color;
                 [weakSelf addSubview:confettiView];
                 
                 // Add the confetti object behavior to the animator and the view to gravity behavior
@@ -124,27 +115,18 @@
 - (void)blastFrom:(CGPoint)point towards:(CGFloat)angle withForce:(CGFloat)force confettiWidth:(CGFloat)confettiWidth numberOfConfetti:(NSInteger)numberConfetti
 {
     [self setupDataFromDelegates];
-    
-    NSMutableArray *confettiObjects = [NSMutableArray array];
-    
+
+    NSArray<L360ConfettiView *> *confettiViews = [self confettiViewsAtPoint:point confettiWidth:confettiWidth numberOfConfetti:numberConfetti];
+
+    CGRect currentBounds = self.bounds;
+
     __weak L360ConfettiArea *weakSelf = self;
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (NSInteger i = 0; i < numberConfetti; i++) {
-            CGFloat randomWidth = confettiWidth + [weakSelf randomFloatBetween:-(confettiWidth / 2.0) and:2.0];
-            CGRect confettiFrame = CGRectMake(point.x,
-                                              point.y,
-                                              randomWidth,
-                                              randomWidth);
-            
-            // Create the confetti view with the random properties
-            L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
-                                                                    withFlutterSpeed:[weakSelf randomFloatBetween:1.0 and:5.0]
-                                                                         flutterType:[weakSelf randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
-            confettiView.backgroundColor = weakSelf.colors[[weakSelf randomIntegerFrom:0 to:weakSelf.colors.count]];
-            
-            // Each view is associated with an object that handles how the confetti falls
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        NSMutableArray *confettiObjects = [NSMutableArray array];
+
+        for (L360ConfettiView *confettiView in confettiViews) {
             L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithConfettiView:confettiView
-                                                                                 keepWithinBounds:weakSelf.bounds
+                                                                                 keepWithinBounds:currentBounds
                                                                                          animator:weakSelf.animator
                                                                                           gravity:weakSelf.gravityBehavior];
             
@@ -180,25 +162,31 @@
 {
     [self setupDataFromDelegates];
 
-    NSMutableArray *confettiObjects = [NSMutableArray array];
+    NSMutableArray<UIView *> *confettiViews = [NSMutableArray array];
+
+    for (NSInteger i = 0; i < numberConfetti; i++) {
+        NSObject *confetti = [[(Class)confettiClass alloc] initWithStartingPoint:point
+                                                                   confettiColor:nil
+                                                                withFlutterSpeed:[self randomFloatBetween:1.0 and:5.0]
+                                                                     flutterType:[self randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
+
+        if (![confetti isKindOfClass:[UIView class]]) {
+            return;
+        }
+
+        [confettiViews addObject:(UIView *)confetti];
+    }
+
+    CGRect currentBounds = self.bounds;
 
     __weak L360ConfettiArea *weakSelf = self;
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (NSInteger i = 0; i < numberConfetti; i++) {
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        NSMutableArray *confettiObjects = [NSMutableArray array];
 
-            NSObject *confetti = [[(Class)confettiClass alloc] initWithStartingPoint:point
-                                                                     confettiColor:nil
-                                                                  withFlutterSpeed:[weakSelf randomFloatBetween:1.0 and:5.0]
-                                                                       flutterType:[weakSelf randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
-
-            if (![confetti isKindOfClass:[UIView class]]) {
-                break;
-            }
-
-            UIView *confettiView = (UIView *)confetti;
+        for (UIView *confettiView in confettiViews) {
 
             L360ConfettiObject *confettiObject = [[L360ConfettiObject alloc] initWithConfettiView:confettiView
-                                                                                 keepWithinBounds:weakSelf.bounds
+                                                                                 keepWithinBounds:currentBounds
                                                                                          animator:weakSelf.animator
                                                                                           gravity:weakSelf.gravityBehavior];
 
@@ -255,6 +243,27 @@
     }
     
     return fromInteger + arc4random() % (toInteger - fromInteger);
+}
+
+- (NSArray<L360ConfettiView *> *)confettiViewsAtPoint:(CGPoint)point confettiWidth:(CGFloat)confettiWidth numberOfConfetti:(NSInteger)numberConfetti
+{
+    NSMutableArray<L360ConfettiView *> *confettiViews = [NSMutableArray array];
+
+    for (NSInteger i = 0; i < numberConfetti; i++) {
+        CGFloat randomWidth = confettiWidth + [self randomFloatBetween:-(confettiWidth / 2.0) and:2.0];
+        CGRect confettiFrame = CGRectMake(point.x,
+                                          point.y,
+                                          randomWidth,
+                                          randomWidth);
+        L360ConfettiView *confettiView = [[L360ConfettiView alloc] initWithFrame:confettiFrame
+                                                                withFlutterSpeed:[self randomFloatBetween:1.0 and:5.0]
+                                                                     flutterType:[self randomIntegerFrom:0 to:L360ConfettiFlutterTypeCount]];
+        confettiView.backgroundColor = self.colors[[self randomIntegerFrom:0 to:self.colors.count]];
+
+        [confettiViews addObject:confettiView];
+    }
+
+    return confettiViews;
 }
 
 @end
