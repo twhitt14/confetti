@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "L360Confetti"
-  s.version      = "1.1.5"
+  s.version      = "1.1.6"
   s.summary      = "Delight your users with some confetti in your app!!"
 
   s.description  = <<-DESC
@@ -35,7 +35,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "7.0"
   # s.osx.deployment_target = "10.7"
 
-
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.source       = { :git => "https://github.com/life360/confetti.git", :tag => "1.1.5" }
@@ -65,4 +64,5 @@ Pod::Spec.new do |s|
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
+  s.static_framework = true
 end
